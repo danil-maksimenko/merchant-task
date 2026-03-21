@@ -1,0 +1,35 @@
+.records-result {
+  margin-top: 24px;
+}
+
+.records-result__empty {
+  padding: 16px;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  background: #f8fafc;
+  color: #475569;
+}
+
+.records-table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+  border-radius: 14px;
+}
+
+.records-table__head-cell,
+.records-table__cell {
+  padding: 14px 16px;
+  border: 1px solid #e2e8f0;
+  text-align: left;
+}
+
+.records-table__head-cell {
+  background: #eff6ff;
+  color: #1e3a8a;
+  font-weight: 700;
+}
+
+.records-table__row:nth-child(even) {
+  background: #f8fafc;
+}

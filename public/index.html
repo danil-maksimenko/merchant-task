@@ -53,8 +53,35 @@
             </section>
 
             <section class="card">
-                <h2>Пошук записів</h2>
-                <p>test</p>
+                <h2 class="card__title">Пошук записів</h2>
+
+                <form id="searchForm" class="form">
+                    <div class="form__group">
+                        <label for="searchMerchantType" class="form__label">Тип пристрою</label>
+                        <select 
+                            name="searchMerchantType"
+                            id="searchMerchantType" 
+                            class="form__select"
+                        >
+                            <option value="" selected disabled hidden>Оберіть тип пристрою</option>
+                        </select>
+                    </div>
+
+                    <div class="form__group">
+                        <label for="searchMerchantCode" class="form__label">Назва пристрою</label>
+                        <input 
+                            type="text"
+                            id="searchMerchantCode"
+                            name="searchMerchantCode"
+                            class="form__input"
+                            placeholder="Наприклад: CADN1234"
+                        />
+                    </div>
+                    
+                    <button type="submit" class="button button--primary">Отримати дані</button>
+                </form>
+
+                <div id="recordsResult" class="records-result"></div>
             </section>
         </div>
 

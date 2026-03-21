@@ -70,6 +70,33 @@ app.post('/api/records', (request, response) => {
   });
 });
 
+app.get('/api/records', (request, response) => {
+  const { merchantType, merchantCode } = request.query;
+
+  if (!merchantType || !merchantCode) {
+    return response.status(400).json({
+      success: false,
+      message: `Тип та Номер є обов'зяковими`
+    });
+  };
+
+  const normalizedMerchantCode = merchantCode.trim().toUpperCase();
+  const records = readRecords();
+
+  const filteredRecords = records.filter((record) => {
+    return (
+      record.merchantType === merchantType &&
+      record.merchantCode === normalizedMerchantCode
+    );
+  });
+
+  return response.status(200).json({
+    success: true,
+    message: filteredRecords.length ? 'Записи знайдено' : 'Записи не знайдено',
+    data: filteredRecords
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`Server started on http://localhost:${PORT}`);
 });
