@@ -1,14 +1,25 @@
 const express = require('express');
 const path = require('path');
+const fs = require('fs');
 
 const app = express();
 const PORT = 3000;
+const DB_FILE_PATH = path.join(__dirname, 'db.json')
 
 const merchants = [
   { merchantType: 'atm', merchantCode: 'CADN1234' },
   { merchantType: 'atm', merchantCode: 'ANDS1382' },
   { merchantType: 'tso', merchantCode: 'TSOX5678' },
 ];
+
+function readRecords() {
+  const fileContent = fs.readFileSync(DB_FILE_PATH, 'utf-8');
+  return JSON.parse(fileContent);
+}
+
+function writeRecords(records) {
+  fs.writeFileSync(DB_FILE_PATH, JSON.stringify(records, null, 2))
+}
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
@@ -39,14 +50,23 @@ app.post('/api/records', (request, response) => {
     });
   }
 
+  const records = readRecords();
+  
+  const newRecord = {
+    id: Date.now(),
+    merchantType,
+    merchantCode: normalizedMerchantCode,
+    comment: comment.trim(),
+    createdAt: new Date().toISOString()
+  };
+
+  records.push(newRecord);
+  writeRecords(records);
+
   return response.status(201).json({
     success: true,
-    message: 'Мерчант знайдено',
-    data: {
-      merchantType,
-      merchantCode: normalizedMerchantCode,
-      comment
-    }
+    message: 'Запис успішно збережено',
+    data: newRecord
   });
 });
 
