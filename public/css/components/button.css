@@ -1,0 +1,17 @@
+.button {
+  padding: 14px 20px;
+  border: none;
+  border-radius: 14px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.button:hover {
+  opacity: 0.5;
+}
+
+.button--primary {
+  color: #fff;
+  background: linear-gradient(135deg, #303031, #000000);
+}

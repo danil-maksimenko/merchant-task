@@ -1,0 +1,38 @@
+.form {
+  display: block;
+}
+
+.form__group {
+  margin-bottom: 18px;
+}
+
+.form__label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.form__input,
+.form__select,
+.form__textarea {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 14px 16px;
+  border: 1pxx solid #cdb5e1;
+  border-radius: 14px;
+  background: #f8fafc;
+  font-size: 15px;
+}
+
+.form__input:focus,
+.form__select:focus,
+.form__textarea:focus {
+  outline: none;
+  border-color: #2563eb;
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+}
+
+.form__textarea {
+  resize: vertical;
+}
