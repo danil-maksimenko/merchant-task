@@ -9,7 +9,7 @@ const commentTextarea = document.getElementById('comment');
 const saveForm = document.getElementById('saveForm');
 const notification = document.getElementById('notification');
 
-function handleSaveFormSubmit(event) {
+async function handleSaveFormSubmit(event) {
   event.preventDefault();
 
   const isFormValid = validateSaveForm(
@@ -23,24 +23,37 @@ function handleSaveFormSubmit(event) {
     return;
   }
 
-  const merchantTypeValue = merchantTypeSelect.value;
-  const merchantTypeObject = merchantTypes.find((type) => {
-    return type.value === merchantTypeValue;
-  });
-
-  const merchantTypeLabel = merchantTypeObject ? merchantTypeObject.label : '';
-  const merchantCodeValue = merchantCodeInput.value.trim();
-
-  const merchantFullName = `${merchantTypeLabel} - ${merchantCodeValue}`;
-
-  showNotification(notification, `Форма валідна. Мерчант: ${merchantFullName}`, 'success');
-
-  console.log({
-    merchantType: merchantTypeValue,
-    merchantCode: merchantCodeValue,
-    merchantDisplayName: merchantFullName,
+  const payload = {
+    merchantType: merchantTypeSelect.value,
+    merchantCode: merchantCodeInput.value.trim(),
     comment: commentTextarea.value.trim()
-  });
+  };
+
+  try {
+    const response = await fetch('/api/records', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      showNotification(notification, result.message, 'error');
+      return;
+    }
+
+    showNotification(notification, result.message, 'success');
+    console.log('Server response:', result);
+  } catch (error) {
+    showNotification(
+      notification,
+      'Сталася помилка під час відправлення даних',
+      'error'
+    );
+  }
 }
 
 renderMerchantTypes(merchantTypes, merchantTypeSelect);
