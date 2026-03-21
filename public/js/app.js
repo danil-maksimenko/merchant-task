@@ -4,19 +4,47 @@ const merchantTypes = [
 ];
 
 const merchantTypeSelect = document.getElementById('merchantType');
+const merchantCodeInput = document.getElementById('merchantCode');
+const commentTextarea = document.getElementById('comment');
+const saveForm = document.getElementById('saveForm');
+const notification = document.getElementById('notification');
 
-function renderMerchantTypes() {
-  if(!merchantTypeSelect) {
+function handleSaveFormSubmit(event) {
+  event.preventDefault();
+
+  const isFormValid = validateSaveForm(
+    merchantTypeSelect,
+    merchantCodeInput,
+    commentTextarea,
+    notification
+  );
+
+  if (!isFormValid) {
     return;
   }
 
-  merchantTypes.forEach((type) => {
-    const optionElement = document.createElement('option');
-    optionElement.value = type.value;
-    optionElement.textContent = type.label;
+  const merchantTypeValue = merchantTypeSelect.value;
+  const merchantTypeObject = merchantTypes.find((type) => {
+    return type.value === merchantTypeValue;
+  });
 
-    merchantTypeSelect.append(optionElement);
-  })
+  const merchantTypeLabel = merchantTypeObject ? merchantTypeObject.label : '';
+  const merchantCodeValue = merchantCodeInput.value.trim();
+
+  const merchantFullName = `${merchantTypeLabel} - ${merchantCodeValue}`;
+
+  showNotification(notification, `Форма валідна. Мерчант: ${merchantFullName}`, 'success');
+
+  console.log({
+    merchantType: merchantTypeValue,
+    merchantCode: merchantCodeValue,
+    merchantDisplayName: merchantFullName,
+    comment: commentTextarea.value.trim()
+  });
 }
 
-renderMerchantTypes();
+renderMerchantTypes(merchantTypes, merchantTypeSelect);
+
+if (saveForm) {
+  saveForm.addEventListener('submit', handleSaveFormSubmit);
+}

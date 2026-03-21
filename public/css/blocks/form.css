@@ -36,3 +36,16 @@
 .form__textarea {
   resize: vertical;
 }
+
+.form__input--error,
+.form__select--error,
+.form__textarea--error {
+  border-color: #ef4444;
+  background: #fef2f2;
+}
+
+.form__input--error:focus,
+.form__select--error:focus,
+.form__textarea--error:focus {
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.12);
+}
