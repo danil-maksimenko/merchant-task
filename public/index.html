@@ -6,58 +6,56 @@
         <title>Merchant Manager</title>
         <link rel="stylesheet" href="./css/main.css" />
     </head>
-    <body>
-        <div class="page">
-            <div class="page__container">
-                <header class="header">
-                    <h1 class="header__title">Merchant Manager</h1>
-                    <p class="header__text">Додавання та пошук записів</p>
-                </header>
+    <body class="page">
+        <div class="page__container">
+            <header class="header">
+                <h1 class="header__title">Merchant Manager</h1>
+                <p class="header__text">Додавання та пошук записів</p>
+            </header>
 
-                <div id="notification" class="notification notification--hidden"></div>
+            <div id="notification" class="notification notification--hidden"></div>
 
-                <section class="card">
-                    <h2 class="card__title">Додавання запису</h2>
+            <section class="card">
+                <h2 class="card__title">Додавання запису</h2>
 
-                    <form id="saveForm" class="form">
-                        <div class="form__group">
-                            <label for="merchantType" class="form__label">Тип пристрою</label>
-                            <select name="merchantType" id="merchantType" class="form__select">
-                                <option value="" selected disabled hidden>Оберіть тип пристрою</option>
-                            </select>
-                        </div>
+                <form id="saveForm" class="form">
+                    <div class="form__group">
+                        <label for="merchantType" class="form__label">Тип пристрою</label>
+                        <select name="merchantType" id="merchantType" class="form__select">
+                            <option value="" selected disabled hidden>Оберіть тип пристрою</option>
+                        </select>
+                    </div>
 
-                        <div class="form__group">
-                            <label for="merchantCode" class="form__label">Назва пристрою</label>
-                            <input 
-                                type="text"
-                                id="merchantCode"
-                                name="merchantCode"
-                                class="form__input"
-                                placeholder="Наприклад: CADN12345"    
-                            />
-                        </div>
+                    <div class="form__group">
+                        <label for="merchantCode" class="form__label">Назва пристрою</label>
+                        <input 
+                            type="text"
+                            id="merchantCode"
+                            name="merchantCode"
+                            class="form__input"
+                            placeholder="Наприклад: CADN12345"    
+                        />
+                    </div>
 
-                        <div class="form__group">
-                            <label for="comment" class="form__label">Коментар</label>
-                            <textarea 
-                                name="comment" 
-                                id="comment"
-                                rows="4"
-                                class="form__textarea"
-                                placeholder="Введіть коментар"
-                            ></textarea>
-                        </div>
+                    <div class="form__group">
+                        <label for="comment" class="form__label">Коментар</label>
+                        <textarea 
+                            name="comment" 
+                            id="comment"
+                            rows="4"
+                            class="form__textarea"
+                            placeholder="Введіть коментар"
+                        ></textarea>
+                    </div>
 
-                        <button type="submit" class="button button--primary">Відправити</button>
-                    </form>
-                </section>
+                    <button type="submit" class="button button--primary">Відправити</button>
+                </form>
+            </section>
 
-                <section class="card">
-                    <h2>Пошук записів</h2>
-                    <p>test</p>
-                </section>
-            </div>
+            <section class="card">
+                <h2>Пошук записів</h2>
+                <p>test</p>
+            </section>
         </div>
 
         <script src="./js/app.js"></script>
