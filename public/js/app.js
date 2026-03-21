@@ -46,6 +46,10 @@ async function handleSaveFormSubmit(event) {
     }
 
     showNotification(notification, result.message, 'success');
+    
+    saveForm.reset();
+    renderMerchantTypes(merchantTypes, merchantTypeSelect);
+    
     console.log('Server response:', result);
   } catch (error) {
     showNotification(

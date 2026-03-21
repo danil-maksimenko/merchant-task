@@ -3,6 +3,8 @@ function renderMerchantTypes(merchantTypes, merchantTypeSelect) {
     return;
   }
 
+  merchantTypeSelect.innerHTML = '<option value="" selected disabled hidden>Оберіть тип пристрою</option>';
+
   merchantTypes.forEach((type) => {
     const optionElement = document.createElement('option');
     optionElement.value = type.value;
